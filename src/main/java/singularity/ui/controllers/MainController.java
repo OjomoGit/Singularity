@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import singularity.ui.animations.AnimationUtils;
 import singularity.ui.utils.SoundController;
+import singularity.ui.utils.UpdateChecker;
 import singularity.ui.widgets.WidgetManager;
 
 public class MainController {
@@ -67,6 +68,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
+        UpdateChecker.checkForUpdatesAsync();
         setupWindowDragging();
         setupMaximizedListener();
         setupSidebarHover();
