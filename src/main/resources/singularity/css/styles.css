@@ -1,0 +1,195 @@
+
+/* KORREKTUR: .root statt * verwenden! */
+.root {
+    -fx-accent: #d946ef;
+
+    /* Weist den Standard-Font der gesamten App zu */
+    -fx-font-family: "JetBrains Mono";
+    -fx-accent-dark: derive(-fx-accent, -70%);
+    -fx-accent-semi: derive(-fx-accent, -50%);
+    -fx-accent-subtle: derive(-fx-accent, -85%);
+    -fx-bg-root: rgba(8, 8, 10, 0.6);
+    -fx-bg-glass: rgba(25, 25, 30, 0.4);
+    -fx-border-glass: rgba(255, 255, 255, 0.03);
+    -fx-text-main: #f4f4f5;
+    -fx-text-muted: #a1a1aa;
+
+}
+
+/* --- MAIN WINDOW --- */
+.root-pane {
+    -fx-background-color: -fx-bg-root;
+    -fx-background-radius: 15;
+    -fx-border-color: -fx-border-glass;
+    -fx-border-radius: 15;
+    -fx-border-width: 1;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+.root-pane.maximized { -fx-background-radius: 0; -fx-border-radius: 0; -fx-border-width: 0; }
+
+/* --- CENTER LOGO --- */
+.logo-container {
+    -fx-background-color: -fx-bg-glass;
+    -fx-padding: 0 20 2 20;
+    -fx-background-radius: 0 0 15 15;
+    -fx-border-color: -fx-border-glass;
+    -fx-border-radius: 0 0 15 15;
+    -fx-border-width: 0 1 1 1;
+}
+.logo-text-large {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Miracle History";
+
+}
+
+/* --- LIQUID GLASS --- */
+.glass-pane {
+    -fx-background-color: -fx-bg-glass;
+    -fx-background-radius: 15;
+    -fx-border-color: -fx-border-glass;
+    -fx-border-radius: 15;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0, 0, 5);
+}
+
+/* --- WIDGET PROGRESS BARS --- */
+.progress-bar {
+    -fx-background-color: transparent;
+    -fx-pref-height: 8px;
+    -fx-min-height: 8px;
+    -fx-max-height: 8px;
+}
+.progress-bar > .track {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 4px;
+}
+.progress-bar > .bar {
+    -fx-background-color: linear-gradient(to right, -fx-accent-dark 0%, -fx-accent 100%);
+    -fx-background-radius: 4px;
+    -fx-background-insets: 0;
+}
+
+/* --- DESKTOP (Dashboard) --- */
+.desktop-pane {
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: -fx-border-glass;
+}
+.desktop-tile {
+    -fx-min-width: 120;
+    -fx-min-height: 120;
+    -fx-cursor: hand;
+}
+.desktop-tile:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-border-color: -fx-accent; /* Updatet sich jetzt dynamisch! */
+}
+.accent-icon { -fx-icon-color: -fx-accent; }
+
+/* --- SIDEBAR NAV --- */
+.sidebar {
+    -fx-background-radius: 15 0 0 15;
+    -fx-border-radius: 15 0 0 15;
+    -fx-border-width: 0 1 0 0;
+}
+.root-pane.maximized .sidebar { -fx-background-radius: 0; -fx-border-radius: 0; }
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+}
+.nav-icon { -fx-icon-color: white; }
+.nav-text { -fx-font-size: 11px; -fx-text-fill: white; }
+
+/* --- HOVER EFFEKTE MIT FADE --- */
+.nav-btn:hover, .glass-btn:hover {
+    -fx-background-color: linear-gradient(to right, -fx-accent-dark 0%, transparent 100%);
+    -fx-border-color: transparent;
+}
+.sub-tab:hover {
+    -fx-background-color: linear-gradient(to right, -fx-accent-subtle 0%, transparent 100%);
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+.nav-btn:hover .nav-icon { -fx-icon-color: -fx-accent; }
+.nav-btn:hover .nav-text { -fx-text-fill: -fx-accent; }
+
+/* --- AKTIVE BUTTONS --- */
+.active-nav {
+    -fx-background-color: linear-gradient(to right, -fx-accent-semi 0%, transparent 100%);
+    -fx-border-width: 0;
+    -fx-effect: none;
+}
+.active-sub-tab {
+    -fx-background-color: linear-gradient(to right, -fx-accent-dark 0%, transparent 100%);
+    -fx-border-width: 0;
+    -fx-effect: none;
+}
+.active-nav .nav-icon, .active-nav .nav-text, .active-sub-tab {
+    -fx-text-fill: white;
+    -fx-icon-color: white;
+}
+
+/* --- SETTINGS & CONTROLS --- */
+.sub-header-title { -fx-font-size: 20px; -fx-text-fill: white; -fx-padding: 0 0 15 0; }
+.sub-tab { -fx-background-color: transparent; -fx-text-fill: -fx-text-muted; -fx-font-size: 14px; -fx-padding: 8 20; -fx-cursor: hand; -fx-background-radius: 8; }
+
+.glass-combo-box, .glass-color-picker {
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-border-color: -fx-border-glass;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+.glass-combo-box .cell, .glass-combo-box .list-cell, .glass-color-picker .color-picker-label {
+    -fx-text-fill: white;
+}
+.glass-combo-box:focused, .glass-color-picker:focused {
+    -fx-border-color: -fx-accent;
+}
+.combo-box-popup .list-view, .glass-combo-box .list-view {
+    -fx-background-color: #1a1a1c;
+    -fx-border-color: #333;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 20, 0, 0, 5);
+}
+.combo-box-popup .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 8 10;
+}
+.combo-box-popup .list-cell:filled:hover, .combo-box-popup .list-cell:filled:selected:hover, .glass-combo-box .list-cell:hover {
+    -fx-background-color: -fx-accent;
+    -fx-text-fill: white;
+}
+.glass-combo-box .arrow { -fx-background-color: -fx-text-muted; }
+
+.color-palette {
+    -fx-background-color: #1a1a1c;
+    -fx-border-color: #333;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 20, 0, 0, 5);
+}
+.color-palette .color-square { -fx-border-color: -fx-border-glass; }
+.color-palette .color-square:hover { -fx-border-color: -fx-accent; }
+
+/* --- WINDOW CONTROLS --- */
+.title-bar { -fx-padding: 0; }
+.window-btn {
+    -fx-background-color: transparent;
+    -fx-padding: 10 16 10 16;
+    -fx-cursor: hand;
+    -fx-font-size: 12px;
+}
+.window-btn:hover { -fx-background-color: rgba(255, 255, 255, 0.1); }
+.window-close-btn { -fx-background-radius: 0 14 0 0; }
+.window-close-btn:hover {
+    -fx-background-color: #e81123;
+    -fx-background-insets: -1 -1 0 0;
+}
+.window-min-btn { -fx-background-radius: 0 0 0 14; }
+.window-max-btn { -fx-background-radius: 0; }
+.window-close-btn:hover .jfx-font-icon { -fx-icon-color: white; }

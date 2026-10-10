@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane fx:id="rootPane" styleClass="root-pane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="singularity.ui.controllers.MainController">
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox fx:id="sidebar" spacing="25" styleClass="sidebar, glass-pane" alignment="TOP_CENTER" prefWidth="60">
+            <padding><Insets top="30" bottom="30"/></padding>
+
+            <Button fx:id="navDashboardBtn" onAction="#showDashboard" styleClass="glass-btn, nav-btn">
+                <graphic>
+                    <VBox alignment="CENTER" spacing="5">
+                        <FontIcon iconLiteral="fth-grid" iconSize="22" styleClass="nav-icon"/>
+                        <Label fx:id="navDashboardTxt" text="Dashboard" styleClass="nav-text" visible="false" managed="false"/>
+                    </VBox>
+                </graphic>
+            </Button>
+
+            <Button fx:id="navSettingsBtn" onAction="#showSettings" styleClass="glass-btn, nav-btn">
+                <graphic>
+                    <VBox alignment="CENTER" spacing="5">
+                        <FontIcon iconLiteral="fth-settings" iconSize="22" styleClass="nav-icon"/>
+                        <Label fx:id="navSettingsTxt" text="Settings" styleClass="nav-text" visible="false" managed="false"/>
+                    </VBox>
+                </graphic>
+            </Button>
+        </VBox>
+    </left>
+
+    <center>
+        <BorderPane>
+            <!-- TITLEBAR -->
+            <top>
+                <HBox fx:id="titleBar" alignment="CENTER" styleClass="title-bar">
+                    <Region HBox.hgrow="ALWAYS" />
+
+                    <!-- CENTERED LOGO -->
+                    <HBox fx:id="logoContainer" alignment="CENTER" spacing="10" styleClass="logo-container">
+                        <ImageView fx:id="mainLogo" fitHeight="58" fitWidth="105" preserveRatio="true">
+                            <Image url="@../images/logo.png"/>
+                        </ImageView>
+                        <Label fx:id="logoLabel" text="Singularity" styleClass="logo-text-large" />
+                    </HBox>
+
+                    <Region HBox.hgrow="ALWAYS" />
+
+                    <!-- WINDOW CONTROLS -->
+                    <HBox alignment="TOP_RIGHT">
+                        <Button styleClass="window-btn, window-min-btn" onAction="#minimizeWindow">
+                            <graphic><FontIcon iconLiteral="fth-minus" iconSize="14" iconColor="#a1a1aa"/></graphic>
+                        </Button>
+                        <Button styleClass="window-btn, window-max-btn" onAction="#maximizeWindow">
+                            <graphic><FontIcon iconLiteral="fth-square" iconSize="12" iconColor="#a1a1aa"/></graphic>
+                        </Button>
+                        <Button styleClass="window-btn, window-close-btn" onAction="#closeWindow">
+                            <graphic><FontIcon iconLiteral="fth-x" iconSize="16" iconColor="#a1a1aa"/></graphic>
+                        </Button>
+                    </HBox>
+                </HBox>
+            </top>
+
+            <center>
+                <StackPane fx:id="centerContent">
+                    <padding><Insets top="20" right="20" bottom="40" left="40"/></padding>
+
+                    <!-- DESKTOP / DASHBOARD -->
+                    <Pane fx:id="dashboardView" styleClass="desktop-pane, glass-pane">
+                        <VBox fx:id="sampleDesktopTile" styleClass="glass-pane, desktop-tile" layoutX="50" layoutY="50" alignment="CENTER" spacing="10">
+                            <FontIcon iconLiteral="fth-box" iconSize="36" styleClass="accent-icon"/>
+                            <Label text="Module A" textFill="white" style="-fx-font-weight: bold;"/>
+                        </VBox>
+                    </Pane>
+
+                    <!-- SETTINGS -->
+                    <VBox fx:id="settingsView" spacing="20" visible="false">
+                        <HBox spacing="15" styleClass="settings-tabs">
+                            <Button fx:id="tabGeneralBtn" onAction="#showSettingsGeneral" text="General" styleClass="glass-btn, sub-tab"/>
+                            <Button fx:id="tabGraphicsBtn" onAction="#showSettingsGraphics" text="Graphics" styleClass="glass-btn, sub-tab"/>
+                            <Button fx:id="tabKeybindsBtn" onAction="#showSettingsKeybinds" text="Keybinds" styleClass="glass-btn, sub-tab"/>
+                            <Button fx:id="tabSoundsBtn" onAction="#showSettingsSounds" text="Sounds" styleClass="glass-btn, sub-tab"/>
+                        </HBox>
+
+                        <StackPane VBox.vgrow="ALWAYS">
+                            <VBox fx:id="generalPane" styleClass="glass-pane" spacing="20">
+                                <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+                                <Label text="Personalization" styleClass="sub-header-title"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="20">
+                                    <Label text="System Accent Color:" textFill="#a1a1aa" prefWidth="150"/>
+                                    <ColorPicker fx:id="accentColorPicker" styleClass="glass-color-picker"/>
+                                </HBox>
+                            </VBox>
+                            <VBox fx:id="graphicsPane" alignment="CENTER" styleClass="glass-pane" visible="false"><Label text="Graphics Settings" textFill="white"/></VBox>
+                            <VBox fx:id="keybindsPane" alignment="CENTER" styleClass="glass-pane" visible="false"><Label text="Keybind Settings" textFill="white"/></VBox>
+                            <VBox fx:id="soundsPane" alignment="CENTER" styleClass="glass-pane" visible="false"><Label text="Sound Settings" textFill="white"/></VBox>
+                        </StackPane>
+                    </VBox>
+                </StackPane>
+            </center>
+
+            <!-- WIDGET SIDEBAR RECHTS -->
+            <right>
+                <VBox fx:id="rightSidebar" spacing="15" styleClass="sidebar, glass-pane" prefWidth="280">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <VBox.margin><Insets top="20" right="40" bottom="40" left="0"/></VBox.margin>
+                </VBox>
+            </right>
+        </BorderPane>
+    </center>
+</BorderPane>
