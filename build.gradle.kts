@@ -25,6 +25,21 @@ tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
 
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "singularity.app.Launcher"
+    }
+
+    // In Kotlin DSL muss DuplicatesStrategy explizit zugewiesen werden
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    // Verpackt Abhängigkeiten für die Executable JAR
+    val dependencies = configurations.runtimeClasspath.get().map {
+        if (it.isDirectory) it else zipTree(it)
+    }
+    from(dependencies)
+}
+
 application {
     mainModule.set("singularity")
     mainClass.set("singularity.app.Main")
@@ -56,4 +71,5 @@ jlink {
         name = "app"
     }
 }
+
 
