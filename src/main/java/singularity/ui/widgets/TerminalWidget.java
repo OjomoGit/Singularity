@@ -55,7 +55,7 @@ public class TerminalWidget extends VBox {
 
         inputField = new TextField();
         inputField.setPromptText("Enter command...");
-        inputField.setStyle("-fx-background-color: rgba(0,0,0,0.3); -fx-text-fill: white; -fx-border-color: rgba(255,255,255,0.08); -fx-border-radius: 4; -fx-background-radius: 4; -fx-font-family: 'JetBrains Mono', monospace; -fx-font-size: 11px;");
+        inputField.setStyle("-fx-background-color: rgba(0,0,0,0.3); -fx-text-fill: white; -fx-border-color: rgba(255,255,255,0.08); -fx-border-radius: 4; -fx-background-radius: 4; -fx-font-family: 'Minecraft'; -fx-font-size: 11px;");
         HBox.setHgrow(inputField, Priority.ALWAYS);
 
         inputField.setOnAction(e -> handleCommandSubmit());

@@ -3,6 +3,7 @@ package singularity.app;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -43,37 +44,45 @@ public class Main extends Application {
             System.exit(0);
         });
 
+        try (InputStream iconStream = Main.class.getResourceAsStream("/singularity/images/logo.png")) {
+            if (iconStream != null) {
+                stage.getIcons().add(new Image(iconStream));
+            }
+        } catch (Exception e) {
+            System.out.println("Konnte Fenster-Icon nicht laden: " + e.getMessage());
+        }
+
         stage.show();
 
         Windows11Blur.applyAcrylic(windowTitle);
     }
 
     // Lädt automatisch alle Fonts (.ttf und .otf) aus dem Ordner in den Speicher
+    // Lädt Fonts sicher aus der verpackten JAR / EXE
     private void loadAllFonts() {
-        try {
-            URL fontDirUrl = Main.class.getResource("/singularity/fonts/");
-            if (fontDirUrl != null) {
-                Path fontDirPath = Paths.get(fontDirUrl.toURI());
-                if (Files.exists(fontDirPath) && Files.isDirectory(fontDirPath)) {
-                    try (Stream<Path> stream = Files.list(fontDirPath)) {
-                        stream.filter(path -> {
-                            String name = path.getFileName().toString().toLowerCase();
-                            return name.endsWith(".ttf") || name.endsWith(".otf");
-                        }).forEach(path -> {
-                            try (InputStream is = Files.newInputStream(path)) {
-                                Font loadedFont = Font.loadFont(is, 14);
-                                if (loadedFont != null) {
-                                    System.out.println("Font geladen: " + path.getFileName() + " (" + loadedFont.getFamily() + ")");
-                                }
-                            } catch (Exception ex) {
-                                System.err.println("Fehler beim Laden von Font " + path.getFileName() + ": " + ex.getMessage());
-                            }
-                        });
+        String[] fontFiles = {
+                "Paceon.ttf",
+                "Miracle History.ttf",
+                "Minecraft.ttf"
+                // Füge hier die genauen Dateinamen aller deiner Schriftdateien im Ordner /singularity/fonts/ ein
+        };
+
+        for (String fontFileName : fontFiles) {
+            String path = "/singularity/fonts/" + fontFileName;
+            try (InputStream is = Main.class.getResourceAsStream(path)) {
+                if (is != null) {
+                    Font loadedFont = Font.loadFont(is, 14);
+                    if (loadedFont != null) {
+                        System.out.println("Font geladen: " + fontFileName + " (" + loadedFont.getFamily() + ")");
+                    } else {
+                        System.err.println("Konnte Font nicht parsen: " + fontFileName);
                     }
+                } else {
+                    System.err.println("Font-Ressource nicht gefunden: " + path);
                 }
+            } catch (Exception e) {
+                System.err.println("Fehler beim Laden von Font " + fontFileName + ": " + e.getMessage());
             }
-        } catch (Exception e) {
-            System.out.println("Fehler beim automatischen Laden der Fonts: " + e.getMessage());
         }
     }
 

@@ -72,10 +72,7 @@
 
                     <!-- DESKTOP / DASHBOARD -->
                     <Pane fx:id="dashboardView" styleClass="desktop-pane, glass-pane">
-                        <VBox fx:id="sampleDesktopTile" styleClass="glass-pane, desktop-tile" layoutX="50" layoutY="50" alignment="CENTER" spacing="10">
-                            <FontIcon iconLiteral="fth-box" iconSize="36" styleClass="accent-icon"/>
-                            <Label text="Module A" textFill="white" style="-fx-font-weight: bold;"/>
-                        </VBox>
+
                     </Pane>
 
                     <!-- SETTINGS -->

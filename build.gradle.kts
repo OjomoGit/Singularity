@@ -1,8 +1,9 @@
 plugins {
     java
     application
+    id ("application")
+    id ("org.openjfx.javafxplugin") version "0.1.0"
     id("org.javamodularity.moduleplugin") version "1.8.15"
-    id("org.openjfx.javafxplugin") version "0.1.0"
     id("org.beryx.jlink") version "2.25.0"
 }
 
@@ -47,7 +48,7 @@ application {
 
 javafx {
     version = "21.0.6"
-    modules = listOf("javafx.controls", "javafx.fxml", "javafx.media")
+    modules = listOf("javafx.controls", "javafx.fxml", "javafx.media", "javafx.web")
 }
 
 dependencies {
@@ -58,6 +59,8 @@ dependencies {
     implementation("net.java.dev.jna:jna:5.14.0")
     implementation("net.java.dev.jna:jna-platform:5.14.0")
     implementation("org.kordamp.ikonli:ikonli-feather-pack:12.3.1")
+    implementation("org.reflections:reflections:0.10.2")
+    implementation("org.slf4j:slf4j-simple:2.0.12")
 }
 
 tasks.withType<Test> {

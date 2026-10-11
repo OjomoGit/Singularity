@@ -4,7 +4,7 @@
     -fx-accent: #d946ef;
 
     /* Weist den Standard-Font der gesamten App zu */
-    -fx-font-family: "JetBrains Mono";
+    -fx-font-family: "Minecraft";
     -fx-accent-dark: derive(-fx-accent, -70%);
     -fx-accent-semi: derive(-fx-accent, -50%);
     -fx-accent-subtle: derive(-fx-accent, -85%);
@@ -77,15 +77,39 @@
     -fx-border-radius: 15;
     -fx-border-color: -fx-border-glass;
 }
+
+/* Desktop App Tile — 90x110 so icon + label text both fit */
 .desktop-tile {
-    -fx-min-width: 120;
-    -fx-min-height: 120;
+    -fx-pref-width: 90;
+    -fx-pref-height: 90;
+    -fx-min-width: 90;
+    -fx-min-height: 90;
+    -fx-max-width: 90;
+    -fx-max-height: 90;
     -fx-cursor: hand;
+    -fx-padding: 12 8 8 8;
+    -fx-border-color: rgba(255, 255, 255, 0.10);
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-width: 1.5;
+    -fx-alignment: center;
 }
 .desktop-tile:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.08);
-    -fx-border-color: -fx-accent; /* Updatet sich jetzt dynamisch! */
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+    -fx-border-color: -fx-accent;
+    -fx-effect: dropshadow(gaussian, -fx-accent, 14, 0.3, 0, 0);
 }
+
+/* Label underneath the icon in a desktop tile */
+.desktop-tile-label {
+    -fx-text-fill: #f4f4f5;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
 .accent-icon { -fx-icon-color: -fx-accent; }
 
 /* --- SIDEBAR NAV --- */
